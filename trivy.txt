@@ -1,0 +1,51 @@
+# Trivy
+Trivy detects three types of security issues:
+
+### Vulnerabilities
+- OS packages (Alpine, Red Hat Universal Base Image, Red Hat Enterprise Linux, CentOS, AlmaLinux, Rocky Linux, CBL-Mariner, Oracle Linux, Debian, Ubuntu, Amazon Linux, openSUSE Leap, SUSE Enterprise Linux, Photon OS and Distroless)
+- Language-specific packages (Bundler, Composer, Pipenv, Poetry, npm, yarn, pnpm, Cargo, NuGet, Maven, and Go)
+
+###  Misconfigurations
+- Kubernetes
+- Docker
+- Terraform
+- CloudFormation
+
+### Secrets
+- AWS access key
+- GCP service account
+- GitHub personal access token
+etc.
+
+##Trivy can scan three different artifacts:
+
+- Container Images
+- Filesystem
+- Git Repositories
+It is designed to be used in CI. Before pushing to a container registry or deploying your application, you can scan your local container image and other artifacts easily. See Integrations for details.
+
+# Installation
+## RHEL/CentOS
+Add repository setting to /etc/yum.repos.d.
+
+'''
+RELEASE_VERSION=$(grep -Po '(?<=VERSION_ID=")[0-9]' /etc/os-release)
+cat << EOF | sudo tee -a /etc/yum.repos.d/trivy.repo
+[trivy]
+name=Trivy repository
+baseurl=https://aquasecurity.github.io/trivy-repo/rpm/releases/$RELEASE_VERSION/\$basearch/
+gpgcheck=0
+enabled=1
+EOF
+sudo yum -y update
+sudo yum -y install trivy
+'''
+## Debian/Ubuntu
+'''
+sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+
+'''
