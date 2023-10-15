@@ -40,9 +40,11 @@ $ sudo apt install docker.io
 $ systemctl status docker
 $ sudo usermod -aG docker ansibleadmin
 $ id ansibleadmin
-################################################### Create Ansible Playbook to Create Docker Image and Copy Image to DockerHub ###################################################
+
+# Create Ansible Playbook to Create Docker Image and Copy Image to DockerHub 
+
 $ sudo apt install net-tools
-$ifconfig
+$ ifconfig
 $ sudo nano /etc/ansible/host
 $ ssh-copy-id localhost    //adding self ssh key
 $ nano cafe-app.yml
