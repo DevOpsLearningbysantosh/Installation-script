@@ -1,7 +1,9 @@
 # Installation-script
 
 ```bash
+
 ################################################################### Jenkins Installation on Ubuntu #########################################################################
+
 $ sudo apt update
 $ sudo apt install default-jdk
 $ update-alternatives --config java    //To find out where apt installed Java on Ubuntu
@@ -22,7 +24,9 @@ sudo apt-get install jenkins
 $ sudo systemctl enable jenkins       //Enable the Jenkins service to start at boot
 $ sudo systemctl start jenkins        //Start Jenkins as a service
 $ systemctl status jenkins
+
 ################################################################### Ansible Installation on Ubuntu #########################################################################
+
 Refer--https://phoenixnap.com/kb/install-ansible-ubuntu-20-04
 $ sudo adduser ansibleadmin
 $ sudo usermod -aG sudo ansibleadmin
@@ -74,7 +78,9 @@ $ ansible-playbook cafe-app.yml --check
 $ ansible-playbook cafe-app.yml
 $ docker images
 $ docker login
+
 ################################################### Install Azure CLI and Connect to Kubernetes from Azure CLI #######################################
+
 Refer--https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt
 $ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 $ az --version
@@ -82,6 +88,7 @@ $ az login
 $ az aks install-cli
 $ az aks get-credentials --resource-group MyLab-RG --name mylab-cluster
 $ kubectl get nodes
+
 ################################################### Create Deployment and Service Manisfest Files ###################################################
 Refer--https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 $ nano cafe-app-deployment.yml
@@ -134,6 +141,7 @@ spec:
   type: LoadBalancer
 
 ############################### Integrate Kube-Server with Ansible and Create Ansible Playbook for Deployment & Service Manifest files ###############################
+
 $ nano /etc/ssh/sshd_config
 PasswordAuthentication yes
 PermitRootLogin yes
@@ -159,7 +167,9 @@ $ nano kubernetes-deploy.yml
 
 
 $ ansible-playbook kubernetes-deploy.yml
+
 Exec command:ansible-playbook /opt/docker/kubernetes-deploy.yml
+
 ############################################################## Cleanup ##############################################################
 $ kubectl delete deployment.apps/mylab-cafe-app
 $ kubectl delete service/mylab-service
