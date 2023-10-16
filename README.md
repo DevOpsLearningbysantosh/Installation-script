@@ -1,6 +1,6 @@
 # Installation-script
 
-
+'''
 ################################################################### Jenkins Installation on Ubuntu #########################################################################
 $ sudo apt update
 $ sudo apt install default-jdk
@@ -164,4 +164,4 @@ Exec command:ansible-playbook /opt/docker/kubernetes-deploy.yml
 $ kubectl delete deployment.apps/mylab-cafe-app
 $ kubectl delete service/mylab-service
 $ az aks delete --name mylab-cluster --resource-group MyLab-RG
-
+'''
